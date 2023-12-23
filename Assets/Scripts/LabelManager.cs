@@ -33,11 +33,10 @@ public class LabelManager : MonoBehaviour
         }
     }
 
-    public (string, int) RandomLabelGenerator()
+    public (string placeLabel, int placeNum) RandomPlaceGenerator()
     {
         int randomNum = Random.Range(0, NumLabels);
         string label = "";
-        Debug.Log("ランダム生成された数字" + randomNum);
         switch (randomNum)
         {
             case 0:
@@ -53,9 +52,59 @@ public class LabelManager : MonoBehaviour
                 Debug.Log("エラー");
                 break;
         }
-        Debug.Log("ランダム生成されたラベル" + label);
         return (label, randomNum);
     }
+
+    public string RandomAddressGenerator()
+    {
+        int[] randomNum = new int[3];
+        string address = "";
+
+        for (int i = 0; i < 3; i++)
+        {
+            randomNum[i] = Random.Range(0, 10);
+            address += randomNum[i].ToString();
+
+            if (i == 2)
+            {
+                break;
+            }
+
+            address += "-";
+        }
+        return (address);
+    }
+
+    public int RandomWeightGenerator()
+    {
+        int randomNum = Random.Range(0, 21);
+        return (randomNum);
+    }
+
+    public int RandomHeightGenerator(int size)
+    {
+        //size = 0: 15 ~ 24
+        //size = 1: 25 ~ 34
+
+        int randomNum = 0;
+
+        if (size == 0)
+        {
+            randomNum = Random.Range(15, 25);
+        }
+        else if (size == 1)
+        {
+            randomNum = Random.Range(25, 35);
+        }
+        else
+        {
+            Debug.Log("エラー");
+        }
+
+        return (randomNum);
+    }
+
+
 
 
 }
